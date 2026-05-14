@@ -27,7 +27,14 @@ function ToastPlayground() {
             Message
           </label>
           <div className={styles.inputWrapper}>
-            <textarea id="message" className={styles.messageInput} />
+            <textarea 
+            id="message" 
+            className={styles.messageInput}
+            value={message}
+            onChange={(event) => {
+              setMessage(event.target.value);
+            }} 
+            />
           </div>
         </div>
 
@@ -47,18 +54,24 @@ function ToastPlayground() {
             </label> */}
 
             {/* TODO Other Variant radio buttons here */}
-            {VARIANT_OPTIONS.map((v) => (
-              <label htmlFor={`variant-${v}`}>
+            {VARIANT_OPTIONS.map((v) => {
+              const id = `variant-${v}`;
+
+              return(
+              <label htmlFor={id} key={id}>
               <input
-                key={v}
-                id={`variant-${v}`}
+                id={id}
                 type="radio"
                 name="variant"
                 value={v}
+                checked={v === variant}
+                onChange={(event) => {
+                  setVariant(event.target.value);
+                }}
               />
               {v}
-            </label>
-            ))}
+            </label>);
+})}
           </div>
         </div>
 
